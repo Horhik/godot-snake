@@ -20,9 +20,9 @@ func move_tale():
 		var curr = get_child(i)
 		curr.old_position = curr.position 
 		if i - 1 == 0:
-			curr.velocity = curr.move_and_slide((prev.position - curr.position).normalized() * $SnakeHead.speed * 1.5)
+			curr.velocity = curr.move_and_slide((prev.position - curr.position).normalized() * $SnakeHead.speed * 1.8)
 		else:
-			curr.velocity = curr.move_and_slide((prev.old_position - curr.position).normalized() * $SnakeHead.speed * 1.5)
+			curr.velocity = curr.move_and_slide((prev.old_position - curr.position).normalized() * $SnakeHead.speed * 1.8)
 			
 		
 
@@ -38,7 +38,7 @@ func create_new_tale(old):
 	if get_child_count() == 2:
 		curr.position = prev.position  - prev.velocity * 0.1
 	else:
-		curr.position = prev.position  - prev.velocity
+		curr.position = prev.position  - prev.velocity * 1.3
 	$SnakeHead/Camera2D.zoom = $SnakeHead/Camera2D.zoom + $SnakeHead/Sprite.texture.get_size() * 0.0001
 
 

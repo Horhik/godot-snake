@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SnakeHead.gd" type="Script" id=1]
+[ext_resource path="res://2DLight.png" type="Texture" id=2]
 [ext_resource path="res://head.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -21,3 +22,10 @@ offset = Vector2( -6.1662, 2.64643 )
 position = Vector2( 0.813019, 0.587719 )
 rotation = 3.14159
 shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 2.44914, 2.77037 )
+texture = ExtResource( 2 )
+texture_scale = 0.26
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
