@@ -27,6 +27,7 @@ func _on_Snake_spawn_eat():
 	
 func rand_spawn():
 	var new_eat = eat.instance()
+	new_eat.generate()
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var rand_pos = Vector2(rng.randf_range(-800	, 800), rng.randf_range(-800, 800))

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Snake.gd" type="Script" id=1]
 [ext_resource path="res://SnakeHead.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.89617, 7.63158 )
 
 [node name="Snake" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,4 +25,11 @@ smoothing_enabled = true
 smoothing_speed = 4.0
 offset_h = 0.05
 offset_v = 0.05
+
+[node name="Area2D" type="Area2D" parent="SnakeHead"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead/Area2D"]
+position = Vector2( 0.538025, -12.1472 )
+shape = SubResource( 1 )
 [connection signal="catch_the_eat" from="SnakeHead" to="." method="_on_SnakeHead_catch_the_eat"]
+[connection signal="body_entered" from="SnakeHead/Area2D" to="." method="_on_Area2D_body_entered"]

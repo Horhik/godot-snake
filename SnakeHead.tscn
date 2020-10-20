@@ -21,8 +21,3 @@ offset = Vector2( -6.1662, 2.64643 )
 position = Vector2( 0.813019, 0.587719 )
 rotation = 3.14159
 shape = SubResource( 1 )
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-rotation = 3.14159
-scale = Vector2( 3.5, 0.3 )
-enabled = true

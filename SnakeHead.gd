@@ -5,7 +5,7 @@ var _max_speed = 1800
 var length = 0
 var velocity = Vector2()
 
-signal catch_the_eat
+signal catch_the_eat(fruit)
 
 enum DirectionState {
 	ToTop,
@@ -19,23 +19,22 @@ var prev_dir;
 
 func get_input():
 
-	if Input.is_action_just_pressed('ui_right'):
+	if Input.is_action_just_pressed('ui_right') and (direction != DirectionState.ToLeft):
 		prev_dir = direction
 		direction = DirectionState.ToRight
-	if Input.is_action_just_pressed( 'ui_left'):
+	if Input.is_action_just_pressed( 'ui_left') and (direction != DirectionState.ToRight):
 		prev_dir = direction
 		direction = DirectionState.ToLeft
-	if Input.is_action_just_pressed('ui_down'):
+	if Input.is_action_just_pressed('ui_down') and (direction != DirectionState.ToTop):
 		prev_dir = direction
 		direction = DirectionState.ToBottom
-	if Input.is_action_just_pressed('ui_up'):
+	if Input.is_action_just_pressed('ui_up') and (direction != DirectionState.ToBottom):
 		prev_dir = direction
 		direction = DirectionState.ToTop
 		
 	
 func change_rot(d):
 	rotation = d
-	prev_dir = direction
 	
 func rotate_head(): 
 	if direction != prev_dir:
@@ -47,28 +46,29 @@ func rotate_head():
 
 func moving():
 	velocity = Vector2()
-	
 	get_input()
 	rotate_head()
 	if direction == DirectionState.ToBottom:
 		velocity.y += 1
 	if direction == DirectionState.ToRight:
 		velocity.x += 1
-		
 	if direction == DirectionState.ToLeft:
 		velocity.x -= 1
 	if direction == DirectionState.ToTop:
 		velocity.y -= 1
+	
 	velocity = velocity.normalized() * speed
 	
 func _physics_process(delta):
-	
 	moving()
 	velocity = move_and_slide(velocity)
 
-func eat():
-	emit_signal("catch_the_eat")
-
+func eat(fruit):
+	emit_signal("catch_the_eat", fruit)
+	if fruit["speed"]:
+		speed += fruit["speed"]	
+	else:
+		speed += 5
 # func move_tale(pos):
 # 	var count = $TaleParts.get_child_count()
 

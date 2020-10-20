@@ -3,22 +3,16 @@ extends Node2D
 var tale = preload("res://SnakeTale.tscn")
 var eat = preload("res://Eat.tscn")
 
-var tale_period = 0.01
-var time = 0
 
 signal spawn_eat
 
 func get_input():
 	if Input.is_action_just_pressed("ui_accept"):
-		print("hellp")
 		create_new_tale($SnakeHead.position)
 
 func _process(delta):
 	get_input()
-	time += delta
-	if (time > tale_period):
-		move_tale()
-		time = 0
+	move_tale()
 
 func move_tale():
 	for i in range(1, get_child_count()):
@@ -38,7 +32,7 @@ func create_new_tale(old):
 	new_tale.old_position = old	
 	new_tale.position = position
 	add_child(new_tale)
-		
+	new_tale.index = get_child_count() - 1
 	var prev = get_child(get_child_count() - 2)
 	var curr = get_child(get_child_count() - 1)
 	if get_child_count() == 2:
@@ -48,9 +42,21 @@ func create_new_tale(old):
 	$SnakeHead/Camera2D.zoom = $SnakeHead/Camera2D.zoom + $SnakeHead/Sprite.texture.get_size() * 0.0001
 
 
-func _on_SnakeHead_catch_the_eat():
-	create_new_tale($SnakeHead.position)
-	$SnakeHead.speed += 10
+func _on_SnakeHead_catch_the_eat(fruit):
+	if fruit["length"] > 0:
+		for i in fruit["length"]:
+			create_new_tale(get_child(get_child_count() - 1).position)
+	elif fruit["length"] < 0:
+		for i in -1 * fruit["length"]:
+			get_child(get_child_count() -1 - i).queue_free()
+			
+			
 	emit_signal("spawn_eat")
-	emit_signal("spawn_eat")
+	print(fruit)
 	
+
+
+func _on_Area2D_body_entered(body):
+	if body.index:
+		for i in range(body.index, get_child_count()):
+			get_child(i).queue_free()
