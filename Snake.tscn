@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Snake.gd" type="Script" id=1]
+[ext_resource path="res://SnakeHead.tscn" type="PackedScene" id=2]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="SnakeHead" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0.471939, -0.943878 )
+
+[node name="Camera2D" type="Camera2D" parent="SnakeHead"]
+current = true
+limit_left = -1600
+limit_top = -1600
+limit_right = 1600
+limit_bottom = 1600
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 4.0
+offset_h = 0.05
+offset_v = 0.05
+[connection signal="catch_the_eat" from="SnakeHead" to="." method="_on_SnakeHead_catch_the_eat"]

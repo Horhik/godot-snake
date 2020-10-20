@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/background1.bmp-3eadea2a4841a235afa0780d7584ac38.res"
+
+[deps]
+
+source_file="res://background1.bmp"
+dest_files=[ "res://.import/background1.bmp-3eadea2a4841a235afa0780d7584ac38.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

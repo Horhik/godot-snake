@@ -1,0 +1,5 @@
+{
+    "godot_tools.editor_path": "/usr/bin/godot",
+    "git.ignoreLimitWarning": true,
+    "godot_tools.gdscript_lsp_server_port": 8080
+}
