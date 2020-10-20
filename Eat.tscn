@@ -13,8 +13,8 @@ radius = 5.57121
 height = 8.15298
 
 [node name="Eat" type="Area2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 16
+collision_mask = 16
 script = ExtResource( 2 )
 
 [node name="TextureRect" type="Sprite" parent="."]
