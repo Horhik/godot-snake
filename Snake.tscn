@@ -35,5 +35,6 @@ collision_mask = 18
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead/Area2D"]
 position = Vector2( 0.538025, -12.1472 )
 shape = SubResource( 1 )
+
 [connection signal="catch_the_eat" from="SnakeHead" to="." method="_on_SnakeHead_catch_the_eat"]
 [connection signal="body_entered" from="SnakeHead/Area2D" to="." method="_on_Area2D_body_entered"]

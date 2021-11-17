@@ -31,6 +31,10 @@ func get_input():
 	if Input.is_action_just_pressed('ui_up') and (direction != DirectionState.ToBottom):
 		prev_dir = direction
 		direction = DirectionState.ToTop
+	if Input.is_action_just_pressed("ui_shift"):
+		speed += 400
+	if Input.is_action_just_released("ui_shift"):
+		speed -= 400
 		
 	
 func change_rot(d):
